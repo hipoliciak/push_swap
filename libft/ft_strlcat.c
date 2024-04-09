@@ -1,31 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ops.c                                              :+:      :+:    :+:   */
+/*   ft_strlcat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dmodrzej <dmodrzej@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/08 22:12:44 by dmodrzej          #+#    #+#             */
-/*   Updated: 2024/04/09 22:03:24 by dmodrzej         ###   ########.fr       */
+/*   Created: 2024/03/03 12:18:36 by dmodrzej          #+#    #+#             */
+/*   Updated: 2024/03/09 13:44:38 by dmodrzej         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "libft.h"
 
-void	swap_a(int *a, int *b)
+size_t	ft_strlcat(char *dest, const char *src, size_t n)
 {
-	int	tmp;
+	size_t	len_src;
+	size_t	len_dest;
 
-	tmp = *a;
-	*a = *b;
-	*b = tmp;
-}
-
-void	swap_b(int *a, int *b)
-{
-	int	tmp;
-
-	tmp = *a;
-	*a = *b;
-	*b = tmp;
+	if (!dest || !src)
+		return (0);
+	len_src = ft_strlen(src);
+	len_dest = ft_strlen(dest);
+	if (n <= len_dest)
+		return (len_src + n);
+	else
+	{
+		dest = dest + len_dest;
+		ft_strlcpy(dest, src, n - len_dest);
+		return (len_src + len_dest);
+	}
 }

@@ -1,31 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ops.c                                              :+:      :+:    :+:   */
+/*   ft_memset.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dmodrzej <dmodrzej@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/08 22:12:44 by dmodrzej          #+#    #+#             */
-/*   Updated: 2024/04/09 22:03:24 by dmodrzej         ###   ########.fr       */
+/*   Created: 2024/03/01 16:41:35 by dmodrzej          #+#    #+#             */
+/*   Updated: 2024/03/10 13:06:43 by dmodrzej         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "libft.h"
 
-void	swap_a(int *a, int *b)
+void	*ft_memset(void *str, int c, size_t n)
 {
-	int	tmp;
+	unsigned int	i;
 
-	tmp = *a;
-	*a = *b;
-	*b = tmp;
-}
-
-void	swap_b(int *a, int *b)
-{
-	int	tmp;
-
-	tmp = *a;
-	*a = *b;
-	*b = tmp;
+	i = 0;
+	while (i < n)
+		((unsigned char *)str)[i++] = (unsigned char)c;
+	return ((unsigned char *)str);
 }

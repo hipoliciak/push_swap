@@ -1,31 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ops.c                                              :+:      :+:    :+:   */
+/*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dmodrzej <dmodrzej@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/08 22:12:44 by dmodrzej          #+#    #+#             */
-/*   Updated: 2024/04/09 22:03:24 by dmodrzej         ###   ########.fr       */
+/*   Created: 2024/03/03 13:29:05 by dmodrzej          #+#    #+#             */
+/*   Updated: 2024/03/09 15:31:42 by dmodrzej         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "libft.h"
 
-void	swap_a(int *a, int *b)
+void	*ft_calloc(size_t items, size_t size)
 {
-	int	tmp;
+	void	*buffer;
 
-	tmp = *a;
-	*a = *b;
-	*b = tmp;
-}
-
-void	swap_b(int *a, int *b)
-{
-	int	tmp;
-
-	tmp = *a;
-	*a = *b;
-	*b = tmp;
+	if (items > sizeof(size_t) && size > sizeof(size_t))
+		return (0);
+	buffer = malloc(items * size);
+	if (!buffer)
+		return (0);
+	else
+		ft_bzero(buffer, items * size);
+	return (buffer);
 }

@@ -1,31 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ops.c                                              :+:      :+:    :+:   */
+/*   ft_putchar_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dmodrzej <dmodrzej@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/08 22:12:44 by dmodrzej          #+#    #+#             */
-/*   Updated: 2024/04/09 22:03:24 by dmodrzej         ###   ########.fr       */
+/*   Created: 2024/03/01 18:44:27 by dmodrzej          #+#    #+#             */
+/*   Updated: 2024/03/06 23:40:19 by dmodrzej         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "libft.h"
 
-void	swap_a(int *a, int *b)
+void	ft_putchar_fd(char c, int fd)
 {
-	int	tmp;
-
-	tmp = *a;
-	*a = *b;
-	*b = tmp;
-}
-
-void	swap_b(int *a, int *b)
-{
-	int	tmp;
-
-	tmp = *a;
-	*a = *b;
-	*b = tmp;
+	if (fd < 0)
+		return ;
+	write(fd, &c, 1);
 }

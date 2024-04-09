@@ -1,31 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ops.c                                              :+:      :+:    :+:   */
+/*   ft_isascii.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dmodrzej <dmodrzej@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/08 22:12:44 by dmodrzej          #+#    #+#             */
-/*   Updated: 2024/04/09 22:03:24 by dmodrzej         ###   ########.fr       */
+/*   Created: 2024/02/29 21:41:51 by dmodrzej          #+#    #+#             */
+/*   Updated: 2024/03/02 17:18:18 by dmodrzej         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "libft.h"
 
-void	swap_a(int *a, int *b)
+int	ft_isascii(int n)
 {
-	int	tmp;
-
-	tmp = *a;
-	*a = *b;
-	*b = tmp;
-}
-
-void	swap_b(int *a, int *b)
-{
-	int	tmp;
-
-	tmp = *a;
-	*a = *b;
-	*b = tmp;
+	if (n >= 0 && n <= 127)
+		return (1);
+	else
+		return (0);
 }

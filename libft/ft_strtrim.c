@@ -1,31 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ops.c                                              :+:      :+:    :+:   */
+/*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dmodrzej <dmodrzej@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/08 22:12:44 by dmodrzej          #+#    #+#             */
-/*   Updated: 2024/04/09 22:03:24 by dmodrzej         ###   ########.fr       */
+/*   Created: 2024/03/04 17:41:23 by dmodrzej          #+#    #+#             */
+/*   Updated: 2024/03/04 19:45:51 by dmodrzej         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "libft.h"
 
-void	swap_a(int *a, int *b)
+char	*ft_strtrim(char const *s1, char const *set)
 {
-	int	tmp;
+	char	*str;
+	int		i;
+	int		j;
 
-	tmp = *a;
-	*a = *b;
-	*b = tmp;
-}
-
-void	swap_b(int *a, int *b)
-{
-	int	tmp;
-
-	tmp = *a;
-	*a = *b;
-	*b = tmp;
+	if (!s1)
+		return (0);
+	if (!set)
+		return (ft_strdup(s1));
+	i = 0;
+	j = (ft_strlen((char *)s1) - 1);
+	while (s1[i] && ft_strchr(set, s1[i]))
+		i++;
+	while (s1[i] && ft_strrchr(set, s1[j]))
+		j--;
+	str = ft_substr(s1, i, ((j - i) + 1));
+	return (str);
 }

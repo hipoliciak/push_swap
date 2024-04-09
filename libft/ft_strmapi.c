@@ -1,31 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ops.c                                              :+:      :+:    :+:   */
+/*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dmodrzej <dmodrzej@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/08 22:12:44 by dmodrzej          #+#    #+#             */
-/*   Updated: 2024/04/09 22:03:24 by dmodrzej         ###   ########.fr       */
+/*   Created: 2024/03/06 18:51:32 by dmodrzej          #+#    #+#             */
+/*   Updated: 2024/03/08 18:29:28 by dmodrzej         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "libft.h"
 
-void	swap_a(int *a, int *b)
+char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
-	int	tmp;
+	unsigned int	i;
+	char			*result;
 
-	tmp = *a;
-	*a = *b;
-	*b = tmp;
-}
-
-void	swap_b(int *a, int *b)
-{
-	int	tmp;
-
-	tmp = *a;
-	*a = *b;
-	*b = tmp;
+	i = 0;
+	if (!s || !f)
+		return (0);
+	result = malloc(sizeof(char) * (ft_strlen(s) + 1));
+	if (!result)
+		return (0);
+	while (s[i] != '\0')
+	{
+		result[i] = (*f)(i, s[i]);
+		i++;
+	}
+	result[i] = '\0';
+	return (result);
 }

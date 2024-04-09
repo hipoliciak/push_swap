@@ -1,31 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ops.c                                              :+:      :+:    :+:   */
+/*   ft_strnstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dmodrzej <dmodrzej@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/08 22:12:44 by dmodrzej          #+#    #+#             */
-/*   Updated: 2024/04/09 22:03:24 by dmodrzej         ###   ########.fr       */
+/*   Created: 2024/03/02 18:17:17 by dmodrzej          #+#    #+#             */
+/*   Updated: 2024/03/07 00:11:25 by dmodrzej         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "libft.h"
 
-void	swap_a(int *a, int *b)
+char	*ft_strnstr(const char *b, const char *l, size_t n)
 {
-	int	tmp;
+	size_t	i;
+	size_t	j;
+	char	*big;
 
-	tmp = *a;
-	*a = *b;
-	*b = tmp;
-}
-
-void	swap_b(int *a, int *b)
-{
-	int	tmp;
-
-	tmp = *a;
-	*a = *b;
-	*b = tmp;
+	big = (char *)b;
+	i = 0;
+	if (l[0] == '\0')
+		return (big);
+	if (n == 0)
+		return (0);
+	while (big[i] != '\0' && i < n)
+	{
+		j = 0;
+		while (big[i + j] == l[j] && i + j < n)
+		{
+			if (l[j + 1] == '\0')
+				return (big + i);
+			j++;
+		}
+		i++;
+	}
+	return (0);
 }
