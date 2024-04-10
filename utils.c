@@ -6,13 +6,13 @@
 /*   By: dmodrzej <dmodrzej@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 21:29:37 by dmodrzej          #+#    #+#             */
-/*   Updated: 2024/04/09 22:54:01 by dmodrzej         ###   ########.fr       */
+/*   Updated: 2024/04/10 19:53:06 by dmodrzej         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	free_and_exit(int *stack_a, int *stack_b)
+void	free_and_exit(t_stack **stack_a, t_stack **stack_b)
 {
 	free(stack_a);
 	free(stack_b);
@@ -68,4 +68,55 @@ long int	ft_atoi(const char *str)
 		i++;
 	}
 	return (number * sign);
+}
+
+t_stack	*ft_new_num(int num)
+{
+	t_stack	*new;
+
+	new = malloc(sizeof(t_stack));
+	if (!new)
+		return (0);
+	new->num = num;
+	new->next = 0;
+	return (new);
+}
+
+int	ft_stack_size(t_stack *stack)
+{
+	int	size;
+
+	size = 0;
+	if (!stack)
+		return (0);
+	while (stack)
+	{
+		stack = stack->next;
+		size++;
+	}
+	return (size);
+}
+
+void	ft_stack_add_back(t_stack **stack, t_stack *new)
+{
+	t_stack	*temp;
+
+	if (!new)
+		return ;
+	if (!*stack)
+	{
+		*stack = new;
+		return ;
+	}
+	temp = ft_stack_last(*stack);
+	temp->next = new;
+}
+
+t_stack	*ft_stack_last(t_stack *stack)
+{
+	if (!stack)
+		return (0);
+	while (stack->next)
+		stack = stack->next;
+	return (stack);
 }
