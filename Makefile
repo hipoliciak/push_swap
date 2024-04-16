@@ -6,9 +6,11 @@
 #    By: dmodrzej <dmodrzej@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/09 22:01:08 by dmodrzej          #+#    #+#              #
-#    Updated: 2024/04/17 00:20:50 by dmodrzej         ###   ########.fr        #
+#    Updated: 2024/04/17 00:28:54 by dmodrzej         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
+
+NAME	=	push_swap
 
 SRCS	=	main.c ops.c utils.c
 
@@ -21,10 +23,10 @@ FLAGS	=	-Wall -Wextra -Werror
 %.o: %.c
 			$(CC) $(FLAGS) -c $< -o $@
 
-all:		push_swap
+all:		$(NAME)
 
-push_swap:	$(OBJS) libft
-			$(CC) $(FLAGS) $(OBJS) -o $@ -L libft -lft 
+$(NAME):	$(OBJS) libft
+			$(CC) $(FLAGS) $(OBJS) -o $@ -L libft -lft
 
 libft:
 			make -C libft
