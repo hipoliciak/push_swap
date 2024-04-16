@@ -6,32 +6,38 @@
 #    By: dmodrzej <dmodrzej@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/09 22:01:08 by dmodrzej          #+#    #+#              #
-#    Updated: 2024/04/09 22:06:56 by dmodrzej         ###   ########.fr        #
+#    Updated: 2024/04/17 00:20:50 by dmodrzej         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME	=	push_swap
-
 SRCS	=	main.c ops.c utils.c
-					
-FLAGS	=	-Wall -Wextra -Werror
 
 OBJS	=	$(SRCS:.c=.o)
 
-%.o: %.c push_swap.h
-	cc $(FLAGS) -c $< -o $@
+CC		=	cc
 
-all:		$(NAME)
+FLAGS	=	-Wall -Wextra -Werror
 
-${NAME}: ${OBJS}
-	cc ${FLAGS} ${OBJS} -o ${NAME}
+%.o: %.c
+			$(CC) $(FLAGS) -c $< -o $@
 
-clean:
-			rm -f $(OBJS) $(BONUS_O)
+all:		push_swap
+
+push_swap:	$(OBJS) libft
+			$(CC) $(FLAGS) $(OBJS) -o $@ -L libft -lft 
+
+libft:
+			make -C libft
+
+remlib:
+			make clean -C libft
+
+clean:		remlib
+			rm -f $(OBJS)
 
 fclean:		clean
-			rm -f $(NAME)
+			rm -f push_swap libft/libft.a
 
-re:			fclean all bonus
+re:			fclean all
 
-.PHONY:		all bonus clean fclean re
+.PHONY:		all push_swap libft remlib clean fclean re

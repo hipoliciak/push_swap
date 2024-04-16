@@ -6,7 +6,7 @@
 #    By: dmodrzej <dmodrzej@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/28 23:14:11 by dmodrzej          #+#    #+#              #
-#    Updated: 2024/03/10 12:57:04 by dmodrzej         ###   ########.fr        #
+#    Updated: 2024/04/16 23:37:52 by dmodrzej         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,35 +20,30 @@ SRCS	=	ft_atoi.c ft_isalnum.c ft_isalpha.c ft_isascii.c \
 			ft_strnstr.c ft_memchr.c ft_memcmp.c ft_strlcpy.c \
 			ft_strlcat.c ft_strdup.c ft_calloc.c ft_itoa.c \
 			ft_substr.c ft_strjoin.c ft_strtrim.c ft_split.c \
-			ft_striteri.c ft_strmapi.c
-			
-BONUS	=	ft_lstadd_front.c ft_lstlast.c ft_lstnew.c ft_lstsize.c \
-			ft_lstadd_back.c ft_lstclear.c ft_lstdelone.c ft_lstiter.c \
-			ft_lstmap.c
-					
-FLAGS	=	-Wall -Wextra -Werror
+			ft_striteri.c ft_strmapi.c ft_lstadd_front.c ft_lstlast.c \
+			ft_lstnew.c ft_lstsize.c ft_lstadd_back.c ft_lstclear.c \
+			ft_lstdelone.c ft_lstiter.c ft_lstmap.c
 
 OBJS	=	$(SRCS:.c=.o)
 
-BONUS_O	=	$(BONUS:.c=.o)
+CC		=	cc
 
-%.o: %.c libft.h
-	cc $(FLAGS) -c $< -o $@
+FLAGS	=	-Wall -Wextra -Werror
+
+%.o: %.c
+			$(CC) $(FLAGS) -c $< -o $@
 
 all:		$(NAME)
 
 $(NAME):	$(OBJS)
 			ar -rcs $(NAME) $(OBJS)
 
-bonus:		$(NAME) $(BONUS_O)
-			ar -rcs $(NAME) $(BONUS_O)
-
 clean:
-			rm -f $(OBJS) $(BONUS_O)
+			rm -f $(OBJS)
 
 fclean:		clean
 			rm -f $(NAME)
 
-re:			fclean all bonus
+re:			fclean all
 
-.PHONY:		all bonus clean fclean re
+.PHONY:		all clean fclean re

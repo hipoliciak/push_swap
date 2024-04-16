@@ -6,7 +6,7 @@
 /*   By: dmodrzej <dmodrzej@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/08 22:41:54 by dmodrzej          #+#    #+#             */
-/*   Updated: 2024/04/10 19:52:44 by dmodrzej         ###   ########.fr       */
+/*   Updated: 2024/04/17 00:25:16 by dmodrzej         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,12 +63,13 @@ int	check_nums(int argc, char **argv)
 
 int	main(int argc, char **argv)
 {
-	t_stack	**stack_a;
-	t_stack	**stack_b;
-	t_stack	*new;
+	t_list		**stack_a;
+	t_list		**stack_b;
+	t_list		*new;
+	long int	num;
 
-	stack_a = malloc(sizeof(t_stack) * (argc - 1));
-	stack_b = malloc(sizeof(t_stack) * (argc - 1));
+	stack_a = malloc(sizeof(t_list) * (argc - 1));
+	stack_b = malloc(sizeof(t_list) * (argc - 1));
 	if (argc <= 1)
 	{
 		free(stack_a);
@@ -81,15 +82,16 @@ int	main(int argc, char **argv)
 		free_and_exit(stack_a, stack_b);
 	while (argc > 1)
 	{
-		if (ft_atoi(argv[argc - 1]) > INT_MAX || ft_atoi(argv[argc - 1]) < INT_MIN)
+		if (ft_atoli(argv[argc - 1]) > INT_MAX || ft_atoli(argv[argc - 1]) < INT_MIN)
 			free_and_exit(stack_a, stack_b);
-		new = ft_new_num(ft_atoi(argv[argc - 1]));
-		printf("num pos stack_a %d = %d\n", argc - 2, new->num);
-		ft_stack_add_back(stack_a, new);
+		num = ft_atoli(argv[argc - 1]);
+		new = ft_lstnew(&num);
+		printf("num pos stack_a %d = %d\n", argc - 2, *(int *)new->content);
+		ft_lstadd_back(stack_a, new);
 		argc--;
 	}
-	printf("stack_a size = %d\n", ft_stack_size(*stack_a));
-	printf("stack_b size = %d\n", ft_stack_size(*stack_b));
+	printf("stack_a size = %d\n", ft_lstsize(*stack_a));
+	printf("stack_b size = %d\n", ft_lstsize(*stack_b));
 	free(stack_a);
 	free(stack_b);
 	ft_putstr_fd("OK\n", 1);
