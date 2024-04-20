@@ -6,13 +6,14 @@
 #    By: dmodrzej <dmodrzej@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/09 22:01:08 by dmodrzej          #+#    #+#              #
-#    Updated: 2024/04/20 13:26:14 by dmodrzej         ###   ########.fr        #
+#    Updated: 2024/04/20 21:26:16 by dmodrzej         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME	=	push_swap
 
-SRCS	=	main.c swap.c push.c utils.c rotate.c
+SRCS	=	main.c swap.c push.c utils.c rotate.c \
+			reverse_rotate.c sort.c sort_utils.c \
 
 OBJS	=	$(SRCS:.c=.o)
 

@@ -6,7 +6,7 @@
 /*   By: dmodrzej <dmodrzej@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 23:17:49 by dmodrzej          #+#    #+#             */
-/*   Updated: 2024/04/20 12:43:42 by dmodrzej         ###   ########.fr       */
+/*   Updated: 2024/04/20 15:57:21 by dmodrzej         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ void	ft_putendl_fd(char *s, int fd);
 void	ft_putnbr_fd(int n, int fd);
 void	ft_putstr_fd(char *str, int fd);
 void	ft_striteri(char *s, void (*f)(unsigned int, char*));
+
 //bonus
 typedef struct s_list
 {
@@ -65,4 +66,8 @@ void	ft_lstadd_front(t_list **lst, t_list *new);
 void	ft_lstclear(t_list **lst, void (*del)(void *));
 void	ft_lstdelone(t_list *lst, void (*del)(void *));
 void	ft_lstiter(t_list *lst, void (*f)(void *));
+
+//extra
+long	ft_atoli(const char *str);
+int		ft_strcmp(char *s1, char *s2);
 #endif

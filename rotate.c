@@ -6,7 +6,7 @@
 /*   By: dmodrzej <dmodrzej@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 13:11:41 by dmodrzej          #+#    #+#             */
-/*   Updated: 2024/04/20 13:24:28 by dmodrzej         ###   ########.fr       */
+/*   Updated: 2024/04/20 19:33:32 by dmodrzej         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@ void	rotate(t_list **stack)
 
 	if (!*stack || !(*stack)->next)
 		return ;
-	tmp = *stack;
-	*stack = (*stack)->next;
+	tmp = (*stack);
+	(*stack) = (*stack)->next;
 	tmp->next = NULL;
 	ft_lstadd_back(stack, tmp);
 }
