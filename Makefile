@@ -6,13 +6,13 @@
 #    By: dmodrzej <dmodrzej@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/09 22:01:08 by dmodrzej          #+#    #+#              #
-#    Updated: 2024/04/17 00:28:54 by dmodrzej         ###   ########.fr        #
+#    Updated: 2024/04/20 13:26:14 by dmodrzej         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME	=	push_swap
 
-SRCS	=	main.c ops.c utils.c
+SRCS	=	main.c swap.c push.c utils.c rotate.c
 
 OBJS	=	$(SRCS:.c=.o)
 
@@ -31,10 +31,10 @@ $(NAME):	$(OBJS) libft
 libft:
 			make -C libft
 
-remlib:
+cleanlib:
 			make clean -C libft
 
-clean:		remlib
+clean:		cleanlib
 			rm -f $(OBJS)
 
 fclean:		clean
@@ -42,4 +42,4 @@ fclean:		clean
 
 re:			fclean all
 
-.PHONY:		all push_swap libft remlib clean fclean re
+.PHONY:		all push_swap libft cleanlib clean fclean re

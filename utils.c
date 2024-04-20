@@ -6,11 +6,28 @@
 /*   By: dmodrzej <dmodrzej@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 21:29:37 by dmodrzej          #+#    #+#             */
-/*   Updated: 2024/04/17 00:24:38 by dmodrzej         ###   ########.fr       */
+/*   Updated: 2024/04/20 13:09:49 by dmodrzej         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+void	fill_stack(t_list **stack_a, int argc, char **argv)
+{
+	int		i;
+	long	*num;
+
+	num = malloc(sizeof(long) * (argc - 1));
+	i = 1;
+	while (i < argc)
+	{
+		num[i] = ft_atoli(argv[i]);
+		if (num[i] > INT_MAX || num[i] < INT_MIN)
+			free_and_exit(stack_a, NULL);
+		ft_lstadd_back(stack_a, ft_lstnew(&num[i]));
+		i++;
+	}
+}
 
 void	free_and_exit(t_list **stack_a, t_list **stack_b)
 {
@@ -34,11 +51,11 @@ int	ft_strcmp(char *s1, char *s2)
 	return (0);
 }
 
-long int	ft_atoli(const char *str)
+long	ft_atoli(const char *str)
 {
-	int			i;
-	long int	number;
-	int			sign;
+	int		i;
+	long 	number;
+	int		sign;
 
 	i = 0;
 	number = 0;

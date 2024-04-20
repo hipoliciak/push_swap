@@ -6,11 +6,23 @@
 /*   By: dmodrzej <dmodrzej@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/08 22:41:54 by dmodrzej          #+#    #+#             */
-/*   Updated: 2024/04/17 00:25:16 by dmodrzej         ###   ########.fr       */
+/*   Updated: 2024/04/20 13:25:00 by dmodrzej         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+// t_list	*ft_lstnew(int num)
+// {
+// 	t_list	*new;
+
+// 	new = malloc(sizeof(t_list));
+// 	if (!new)
+// 		return (0);
+// 	new->num = num;
+// 	new->next = 0;
+// 	return (new);
+// }
 
 int	check_duplicates(int argc, char **argv)
 {
@@ -61,39 +73,37 @@ int	check_nums(int argc, char **argv)
 	return (0);
 }
 
-int	main(int argc, char **argv)
+int	main(int ac, char **av)
 {
-	t_list		**stack_a;
-	t_list		**stack_b;
-	t_list		*new;
-	long int	num;
+	t_list	**stack_a;
+	t_list	**stack_b;
+	t_list	*stack_test;
 
-	stack_a = malloc(sizeof(t_list) * (argc - 1));
-	stack_b = malloc(sizeof(t_list) * (argc - 1));
-	if (argc <= 1)
-	{
-		free(stack_a);
-		free(stack_b);
+	if (ac <= 1)
 		exit (0);
-	}
-	if (check_nums(argc, argv) == 1)
-		free_and_exit(stack_a, stack_b);
-	if (check_duplicates(argc, argv) == 1)
-		free_and_exit(stack_a, stack_b);
-	while (argc > 1)
-	{
-		if (ft_atoli(argv[argc - 1]) > INT_MAX || ft_atoli(argv[argc - 1]) < INT_MIN)
-			free_and_exit(stack_a, stack_b);
-		num = ft_atoli(argv[argc - 1]);
-		new = ft_lstnew(&num);
-		printf("num pos stack_a %d = %d\n", argc - 2, *(int *)new->content);
-		ft_lstadd_back(stack_a, new);
-		argc--;
-	}
+	stack_a = malloc(sizeof(t_list *) * (ac - 1));
+	stack_b = malloc(sizeof(t_list *) * (ac - 1));
+	if (check_nums(ac, av) == 1)
+		free_and_exit(stack_a, NULL);
+	if (check_duplicates(ac, av) == 1)
+		free_and_exit(stack_a, NULL);
+	fill_stack(stack_a, ac, av);
+	stack_test = *stack_a;
+	printf("stack_a pos%d = %ld\n", 0, *(long *)stack_test->content);
+	sa(stack_a);
+	stack_test = *stack_a;
+	printf("stack_a pos%d = %ld\n", 0, *(long *)stack_test->content);
+	pb(stack_a, stack_b);
+	stack_test = *stack_b;
+	printf("stack_b pos%d = %ld\n", 0, *(long *)stack_test->content);
+	stack_test = *stack_a;
+	printf("stack_a pos%d = %ld\n", 0, *(long *)stack_test->content);
+	ra(stack_a);
+	stack_test = ft_lstlast(*stack_a);
+	printf("stack_a pos last = %ld\n", *(long *)stack_test->content);
+	stack_test = *stack_a;
+	printf("stack_a pos%d = %ld\n", 0, *(long *)stack_test->content);
 	printf("stack_a size = %d\n", ft_lstsize(*stack_a));
 	printf("stack_b size = %d\n", ft_lstsize(*stack_b));
-	free(stack_a);
-	free(stack_b);
-	ft_putstr_fd("OK\n", 1);
 	return (0);
 }
