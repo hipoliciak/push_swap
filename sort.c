@@ -6,33 +6,36 @@
 /*   By: dmodrzej <dmodrzej@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 19:01:36 by dmodrzej          #+#    #+#             */
-/*   Updated: 2024/04/20 21:47:32 by dmodrzej         ###   ########.fr       */
+/*   Updated: 2024/04/21 11:54:21 by dmodrzej         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	sort_small(unsigned int size_a, t_list **stack_a, t_list **stack_b)
+void	sort_3_to_5(unsigned int size_a, t_list **stack_a, t_list **stack_b)
 {
-	int	num;
-
 	while (size_a > 3)
 	{
-		num = *(int *)(*stack_a)->content;
-		if (num == stack_min(stack_a))
+		if (*(int *)(*stack_a)->content == stack_min(stack_a))
 		{
+			pb(stack_a, stack_b);
+			size_a--;
+		}
+		else if (*(int *)ft_lstlast(*stack_a)->content == stack_min(stack_a))
+		{
+			rra(stack_a);
 			pb(stack_a, stack_b);
 			size_a--;
 		}
 		else
 			ra(stack_a);
 	}
-	sort_three(stack_a);
+	sort_3(stack_a);
 	while (*stack_b)
 		pa(stack_a, stack_b);
 }
 
-void	sort_three(t_list **stack)
+void	sort_3(t_list **stack)
 {
 	int	num1;
 	int	num2;
@@ -67,14 +70,16 @@ void	sort(t_list **stack_a, int ac)
 	stack_b = malloc(sizeof(t_list) * (ac - 1));
 	if (!stack_b)
 		free_and_exit(stack_a, NULL);
+	*stack_b = NULL;
 	size_a = ft_lstsize(*stack_a);
 	if (size_a == 2)
 		sa(stack_a);
 	else if (size_a == 3)
-		sort_three(stack_a);
-	else if (size_a >= 4 && size_a <= 6)
-		sort_small(size_a, stack_a, stack_b);
+		sort_3(stack_a);
+	else if (size_a > 3 && size_a <= 5)
+		sort_3_to_5(size_a, stack_a, stack_b);
 	else
 		ft_putendl_fd("Sort not implemented yet", 1);
+	ft_lstclear(stack_b, free);
 	free(stack_b);
 }

@@ -6,25 +6,11 @@
 /*   By: dmodrzej <dmodrzej@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 21:29:37 by dmodrzej          #+#    #+#             */
-/*   Updated: 2024/04/20 20:52:53 by dmodrzej         ###   ########.fr       */
+/*   Updated: 2024/04/21 14:40:51 by dmodrzej         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-int	is_sorted(t_list **stack)
-{
-	t_list	*tmp;
-
-	tmp = *stack;
-	while (tmp->next)
-	{
-		if (*(long *)tmp->content > *(long *)tmp->next->content)
-			return (1);
-		tmp = tmp->next;
-	}
-	return (0);
-}
 
 int	check_duplicates(int ac, char **av)
 {
@@ -75,15 +61,11 @@ int	is_nums(int ac, char **av)
 	return (0);
 }
 
-void	fill_stack(t_list **stack_a, int ac, char **av)
+void	fill_stack(t_list **stack_a, long *nums, int ac, char **av)
 {
 	int		i;
-	long	*nums;
 
 	i = 0;
-	nums = malloc(sizeof(long) * (ac - 1));
-	if (!nums)
-		free_and_exit(stack_a, NULL);
 	while (i < (ac - 1))
 	{
 		nums[i] = ft_atoli(av[i + 1]);
@@ -96,8 +78,25 @@ void	fill_stack(t_list **stack_a, int ac, char **av)
 
 void	free_and_exit(t_list **stack_a, t_list **stack_b)
 {
+	free_stack(stack_a);
+	free_stack(stack_b);
 	free(stack_a);
 	free(stack_b);
 	ft_putendl_fd("Error", 2);
 	exit(1);
+}
+
+void	free_stack(t_list **stack)
+{
+	t_list	*tmp;
+
+	if (!stack || !(*stack))
+		return ;
+	while (*stack)
+	{
+		tmp = (*stack)->next;
+		free(*stack);
+		*stack = tmp;
+	}
+	*stack = NULL;
 }

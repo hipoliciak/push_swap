@@ -6,7 +6,7 @@
 /*   By: dmodrzej <dmodrzej@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 21:58:42 by dmodrzej          #+#    #+#             */
-/*   Updated: 2024/04/20 21:37:31 by dmodrzej         ###   ########.fr       */
+/*   Updated: 2024/04/21 14:43:24 by dmodrzej         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@
 
 // Sort
 void	sort(t_list **stack_a, int ac);
-void	sort_three(t_list **stack);
-void	sort_small(unsigned int size_a, t_list **stack_a, t_list **stack_b);
+void	sort_3(t_list **stack);
+void	sort_3_to_5(unsigned int size_a, t_list **stack_a, t_list **stack_b);
 
 // Sort utils
 int		stack_min(t_list **stack);
@@ -28,9 +28,9 @@ int		stack_max(t_list **stack);
 // Utils
 int		check_duplicates(int ac, char **av);
 int		is_nums(int ac, char **av);
-int		is_sorted(t_list **stack);
 void	free_and_exit(t_list **stack_a, t_list **stack_b);
-void	fill_stack(t_list **stack_a, int ac, char **av);
+void	fill_stack(t_list **stack_a, long *nums, int ac, char **av);
+void	free_stack(t_list **stack);
 
 // Swap ops
 void	swap(t_list **stack);
