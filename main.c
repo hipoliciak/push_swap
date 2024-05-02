@@ -6,25 +6,11 @@
 /*   By: dmodrzej <dmodrzej@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/08 22:41:54 by dmodrzej          #+#    #+#             */
-/*   Updated: 2024/04/21 14:45:33 by dmodrzej         ###   ########.fr       */
+/*   Updated: 2024/04/27 23:40:29 by dmodrzej         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-static int	is_sorted(t_list **stack)
-{
-	t_list	*tmp;
-
-	tmp = *stack;
-	while (tmp->next)
-	{
-		if (*(long *)tmp->content > *(long *)tmp->next->content)
-			return (0);
-		tmp = tmp->next;
-	}
-	return (1);
-}
 
 int	main(int ac, char **av)
 {
@@ -52,12 +38,3 @@ int	main(int ac, char **av)
 	free(nums);
 	return (0);
 }
-
-	// ft_putendl_fd("Stack is sorted, no moves needed", 1);
-	// while (*stack_a)
-	// {
-	// 	ft_putnbr_fd(*(int *)(*stack_a)->content, 1);
-	// 	ft_putchar_fd(' ', 1);
-	// 	*stack_a = (*stack_a)->next;
-	// }
-	// ft_putchar_fd('\n', 1);

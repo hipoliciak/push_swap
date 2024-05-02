@@ -6,7 +6,7 @@
 /*   By: dmodrzej <dmodrzej@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 21:29:37 by dmodrzej          #+#    #+#             */
-/*   Updated: 2024/04/21 14:40:51 by dmodrzej         ###   ########.fr       */
+/*   Updated: 2024/04/27 23:04:13 by dmodrzej         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,23 +38,21 @@ int	is_nums(int ac, char **av)
 	int	j;
 
 	i = 1;
+	if (av[i][0] == '\0' || (av[i][0] == '+' && av[i][1] == '\0')
+		|| (av[i][0] == '-' && av[i][1] == '\0'))
+		return (1);
 	while (i < ac)
 	{
 		j = 0;
+		while ((av[i][j] > 9 && av[i][j] < 13) || av[i][j] == 32)
+			j++;
+		if (av[i][j] == '+' || av[i][j] == '-')
+			j++;
 		while (av[i][j] != '\0')
 		{
-			while (av[i][j] == ' ' || av[i][j] == '\t'
-				|| av[i][j] == '\n' || av[i][j] == '\v'
-				|| av[i][j] == '\f' || av[i][j] == '\r')
-				j++;
-			if (av[i][j] == '+' || av[i][j] == '-')
-				j++;
-			while (av[i][j] != '\0')
-			{
-				if (av[i][j] < '0' || av[i][j] > '9')
-					return (1);
-				j++;
-			}
+			if (av[i][j] < '0' || av[i][j] > '9')
+				return (1);
+			j++;
 		}
 		i++;
 	}
@@ -76,16 +74,6 @@ void	fill_stack(t_list **stack_a, long *nums, int ac, char **av)
 	}
 }
 
-void	free_and_exit(t_list **stack_a, t_list **stack_b)
-{
-	free_stack(stack_a);
-	free_stack(stack_b);
-	free(stack_a);
-	free(stack_b);
-	ft_putendl_fd("Error", 2);
-	exit(1);
-}
-
 void	free_stack(t_list **stack)
 {
 	t_list	*tmp;
@@ -99,4 +87,14 @@ void	free_stack(t_list **stack)
 		*stack = tmp;
 	}
 	*stack = NULL;
+}
+
+void	free_and_exit(t_list **stack_a, t_list **stack_b)
+{
+	free_stack(stack_a);
+	free_stack(stack_b);
+	free(stack_a);
+	free(stack_b);
+	ft_putstr_fd("Error\n", 2);
+	exit(1);
 }

@@ -6,31 +6,54 @@
 /*   By: dmodrzej <dmodrzej@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 21:58:42 by dmodrzej          #+#    #+#             */
-/*   Updated: 2024/04/21 14:43:24 by dmodrzej         ###   ########.fr       */
+/*   Updated: 2024/05/02 11:52:01 by dmodrzej         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 # include <limits.h>
-# include <stdio.h>
-# include "libft/libft.h"
+# include <stdlib.h>
+# include <unistd.h>
+
+typedef struct s_list
+{
+	void			*content;
+	unsigned int	index;
+	struct s_list	*next;
+}	t_list;
+
+// List mgmt
+int		ft_lstsize(t_list *lst);
+t_list	*ft_lstnew(void *content);
+t_list	*ft_lstlast(t_list *lst);
+void	ft_lstadd_back(t_list **lst, t_list *new);
+void	ft_lstadd_front(t_list **lst, t_list *new);
 
 // Sort
 void	sort(t_list **stack_a, int ac);
 void	sort_3(t_list **stack);
-void	sort_3_to_5(unsigned int size_a, t_list **stack_a, t_list **stack_b);
+void	sort_3_to_6(unsigned int size_a, t_list **stack_a, t_list **stack_b);
+void	sort_big(unsigned int size_a, t_list **stack_a, t_list **stack_b);
 
 // Sort utils
+int		is_sorted(t_list **stack);
 int		stack_min(t_list **stack);
 int		stack_max(t_list **stack);
+void	add_index(unsigned int size_a, t_list **stack_a);
 
-// Utils
+// Other utils
 int		check_duplicates(int ac, char **av);
 int		is_nums(int ac, char **av);
-void	free_and_exit(t_list **stack_a, t_list **stack_b);
 void	fill_stack(t_list **stack_a, long *nums, int ac, char **av);
 void	free_stack(t_list **stack);
+void	free_and_exit(t_list **stack_a, t_list **stack_b);
+
+// Libft functions
+long	ft_atoli(const char *str);
+void	ft_putchar_fd(char c, int fd);
+void	ft_putstr_fd(char *str, int fd);
+void	ft_putnbr_fd(int n, int fd);
 
 // Swap ops
 void	swap(t_list **stack);

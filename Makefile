@@ -6,14 +6,15 @@
 #    By: dmodrzej <dmodrzej@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/09 22:01:08 by dmodrzej          #+#    #+#              #
-#    Updated: 2024/04/20 21:26:16 by dmodrzej         ###   ########.fr        #
+#    Updated: 2024/05/02 11:49:29 by dmodrzej         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME	=	push_swap
 
-SRCS	=	main.c swap.c push.c utils.c rotate.c \
+SRCS	=	main.c utils.c swap.c push.c rotate.c \
 			reverse_rotate.c sort.c sort_utils.c \
+			list_mgmt.c libft_functions.c
 
 OBJS	=	$(SRCS:.c=.o)
 
@@ -26,21 +27,15 @@ FLAGS	=	-Wall -Wextra -Werror
 
 all:		$(NAME)
 
-$(NAME):	$(OBJS) libft
-			$(CC) $(FLAGS) $(OBJS) -o $@ -L libft -lft
+$(NAME):	$(OBJS)
+			$(CC) $(FLAGS) $(OBJS) -o $@
 
-libft:
-			make -C libft
-
-cleanlib:
-			make clean -C libft
-
-clean:		cleanlib
+clean:
 			rm -f $(OBJS)
 
 fclean:		clean
-			rm -f push_swap libft/libft.a
+			rm -f push_swap
 
 re:			fclean all
 
-.PHONY:		all push_swap libft cleanlib clean fclean re
+.PHONY:		all clean fclean re
