@@ -6,7 +6,7 @@
 /*   By: dmodrzej <dmodrzej@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/27 20:34:26 by dmodrzej          #+#    #+#             */
-/*   Updated: 2024/05/02 11:48:38 by dmodrzej         ###   ########.fr       */
+/*   Updated: 2024/05/05 22:10:29 by dmodrzej         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	ft_lstsize(t_list *lst)
 	return (size);
 }
 
-t_list	*ft_lstnew(void *content)
+t_list	*ft_lstnew(long content)
 {
 	t_list	*new;
 
@@ -36,6 +36,7 @@ t_list	*ft_lstnew(void *content)
 		return (NULL);
 	new->content = content;
 	new->index = 0;
+	new->has_index = 0;
 	new->next = NULL;
 	return (new);
 }

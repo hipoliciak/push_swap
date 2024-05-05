@@ -6,7 +6,7 @@
 /*   By: dmodrzej <dmodrzej@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/08 22:12:44 by dmodrzej          #+#    #+#             */
-/*   Updated: 2024/04/20 19:33:14 by dmodrzej         ###   ########.fr       */
+/*   Updated: 2024/05/05 22:30:16 by dmodrzej         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	swap(t_list **stack)
 {
-	void	*tmp;
+	long	tmp;
 
 	if (!*stack || !(*stack)->next)
 		return ;

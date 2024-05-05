@@ -6,7 +6,7 @@
 /*   By: dmodrzej <dmodrzej@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 21:29:37 by dmodrzej          #+#    #+#             */
-/*   Updated: 2024/04/27 23:04:13 by dmodrzej         ###   ########.fr       */
+/*   Updated: 2024/05/05 22:23:16 by dmodrzej         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,17 +61,21 @@ int	is_nums(int ac, char **av)
 
 void	fill_stack(t_list **stack_a, long *nums, int ac, char **av)
 {
-	int		i;
+	int	i;
 
 	i = 0;
 	while (i < (ac - 1))
 	{
 		nums[i] = ft_atoli(av[i + 1]);
-		if (nums[i] > INT_MAX || nums[i] < INT_MIN)
+		if (nums[i] < INT_MIN || nums[i] > INT_MAX)
+		{
+			free(nums);
 			free_and_exit(stack_a, NULL);
-		ft_lstadd_back(stack_a, ft_lstnew(&nums[i]));
+		}
+		ft_lstadd_back(stack_a, ft_lstnew(nums[i]));
 		i++;
 	}
+	add_index(i, stack_a);
 }
 
 void	free_stack(t_list **stack)

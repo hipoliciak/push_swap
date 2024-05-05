@@ -6,7 +6,7 @@
 /*   By: dmodrzej <dmodrzej@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/27 23:07:13 by dmodrzej          #+#    #+#             */
-/*   Updated: 2024/05/02 11:47:25 by dmodrzej         ###   ########.fr       */
+/*   Updated: 2024/05/05 14:23:38 by dmodrzej         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,25 +53,4 @@ void	ft_putstr_fd(char *str, int fd)
 		return ;
 	while (str[i] != '\0')
 		write(fd, &str[i++], 1);
-}
-
-void	ft_putnbr_fd(int n, int fd)
-{
-	if (n == -2147483648)
-		ft_putstr_fd("-2147483648", fd);
-	else
-	{
-		if (n < 0)
-		{
-			ft_putchar_fd('-', fd);
-			n = -n;
-		}
-		if (n >= 10)
-		{
-			ft_putnbr_fd(n / 10, fd);
-			ft_putnbr_fd(n % 10, fd);
-		}
-		else
-			ft_putchar_fd(n + '0', fd);
-	}
 }

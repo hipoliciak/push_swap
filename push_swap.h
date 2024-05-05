@@ -6,7 +6,7 @@
 /*   By: dmodrzej <dmodrzej@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 21:58:42 by dmodrzej          #+#    #+#             */
-/*   Updated: 2024/05/02 11:52:01 by dmodrzej         ###   ########.fr       */
+/*   Updated: 2024/05/05 22:15:21 by dmodrzej         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,30 +14,37 @@
 # define PUSH_SWAP_H
 # include <limits.h>
 # include <stdlib.h>
+# include <stdio.h>
 # include <unistd.h>
 
 typedef struct s_list
 {
-	void			*content;
+	long			content;
 	unsigned int	index;
+	int				has_index;
 	struct s_list	*next;
 }	t_list;
 
+// Stack printing
+void	print_stack(t_list **stack);
+void	print_bits(unsigned char octet);
+void	ft_putnbr_fd(int n, int fd);
+
 // List mgmt
 int		ft_lstsize(t_list *lst);
-t_list	*ft_lstnew(void *content);
+t_list	*ft_lstnew(long content);
 t_list	*ft_lstlast(t_list *lst);
 void	ft_lstadd_back(t_list **lst, t_list *new);
 void	ft_lstadd_front(t_list **lst, t_list *new);
 
-// Sort
-void	sort(t_list **stack_a, int ac);
+// Sort functions
 void	sort_3(t_list **stack);
 void	sort_3_to_6(unsigned int size_a, t_list **stack_a, t_list **stack_b);
 void	sort_big(unsigned int size_a, t_list **stack_a, t_list **stack_b);
 
 // Sort utils
 int		is_sorted(t_list **stack);
+int		is_rev_sorted(t_list **stack);
 int		stack_min(t_list **stack);
 int		stack_max(t_list **stack);
 void	add_index(unsigned int size_a, t_list **stack_a);
@@ -53,7 +60,6 @@ void	free_and_exit(t_list **stack_a, t_list **stack_b);
 long	ft_atoli(const char *str);
 void	ft_putchar_fd(char c, int fd);
 void	ft_putstr_fd(char *str, int fd);
-void	ft_putnbr_fd(int n, int fd);
 
 // Swap ops
 void	swap(t_list **stack);

@@ -6,34 +6,11 @@
 /*   By: dmodrzej <dmodrzej@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 19:01:36 by dmodrzej          #+#    #+#             */
-/*   Updated: 2024/04/28 02:38:40 by dmodrzej         ###   ########.fr       */
+/*   Updated: 2024/05/05 14:55:50 by dmodrzej         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-void	sort(t_list **stack_a, int ac)
-{
-	unsigned int	size_a;
-	t_list			**stack_b;
-
-	size_a = ft_lstsize(*stack_a);
-	stack_b = malloc(sizeof(t_list) * (ac - 1));
-	if (!stack_b)
-		free_and_exit(stack_a, NULL);
-	*stack_b = NULL;
-	add_index(size_a, stack_a);
-	if (size_a == 2)
-		sa(stack_a);
-	else if (size_a == 3)
-		sort_3(stack_a);
-	else if (size_a > 3 && size_a <= 6)
-		sort_3_to_6(size_a, stack_a, stack_b);
-	else
-		sort_big(size_a, stack_a, stack_b);
-	free_stack(stack_b);
-	free(stack_b);
-}
 
 void	sort_3(t_list **stack)
 {
@@ -41,9 +18,9 @@ void	sort_3(t_list **stack)
 	int	num2;
 	int	num3;
 
-	num1 = *(int *)(*stack)->content;
-	num2 = *(int *)(*stack)->next->content;
-	num3 = *(int *)(*stack)->next->next->content;
+	num1 = (*stack)->content;
+	num2 = (*stack)->next->content;
+	num3 = (*stack)->next->next->content;
 	if (num1 == stack_min(stack) && num2 == stack_max(stack))
 	{
 		rra(stack);
@@ -66,14 +43,14 @@ void	sort_3_to_6(unsigned int size_a, t_list **stack_a, t_list **stack_b)
 {
 	while (size_a > 3)
 	{
-		if (*(int *)(*stack_a)->content == stack_min(stack_a))
+		if ((*stack_a)->content == stack_min(stack_a))
 		{
 			pb(stack_a, stack_b);
 			size_a--;
 		}
-		else if (*(int *)(*stack_a)->next->content == stack_min(stack_a))
+		else if ((*stack_a)->next->content == stack_min(stack_a))
 			sa(stack_a);
-		else if (*(int *)ft_lstlast(*stack_a)->content == stack_min(stack_a))
+		else if (ft_lstlast(*stack_a)->content == stack_min(stack_a))
 			rra(stack_a);
 		else
 			ra(stack_a);
@@ -83,24 +60,59 @@ void	sort_3_to_6(unsigned int size_a, t_list **stack_a, t_list **stack_b)
 		pa(stack_a, stack_b);
 }
 
+static void	sort_stack_a(t_list **stack_a, t_list **stack_b, int bit_pos)
+{
+	int	count;
+	int	size_a;
+
+	count = 0;
+	size_a = ft_lstsize(*stack_a);
+	while (*stack_a && count++ < size_a && !is_sorted(stack_a))
+	{
+		if (((*stack_a)->index & bit_pos) == 0)
+			pb(stack_a, stack_b);
+		else
+			ra(stack_a);
+	}
+}
+
+static void	sort_stack_b(t_list **stack_a, t_list **stack_b, int bit_pos)
+{
+	int	bit_pos_2;
+	int	count;
+	int	size_b;
+
+	count = 0;
+	bit_pos_2 = bit_pos;
+	bit_pos_2 <<= 1;
+	size_b = ft_lstsize(*stack_b);
+	while (*stack_b && count++ < size_b && !is_rev_sorted(stack_b))
+	{
+		if (((*stack_b)->index & bit_pos_2) == 0)
+			rb(stack_b);
+		else
+			pa(stack_a, stack_b);
+	}
+}
+
 void	sort_big(unsigned int size_a, t_list **stack_a, t_list **stack_b)
 {
 	int				bit_pos;
-	unsigned int	count;
+	int				bit_max_pos;
 
 	bit_pos = 1;
-	while (!is_sorted(stack_a))
+	bit_max_pos = 1;
+	while (size_a > 0)
 	{
-		count = 0;
-		while (*stack_a != NULL && count++ < size_a)
-		{
-			if (((*stack_a)->index & bit_pos) == 0)
-				pb(stack_a, stack_b);
-			else
-				ra(stack_a);
-		}
-		while (*stack_b != NULL)
-			pa(stack_a, stack_b);
-		bit_pos *= 2;
+		size_a /= 2;
+		bit_max_pos *= 2;
 	}
+	while (!is_sorted(stack_a) && bit_pos < bit_max_pos)
+	{
+		sort_stack_a(stack_a, stack_b, bit_pos);
+		sort_stack_b(stack_a, stack_b, bit_pos);
+		bit_pos <<= 1;
+	}
+	while (*stack_b)
+		pa(stack_a, stack_b);
 }
