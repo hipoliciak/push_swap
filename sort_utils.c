@@ -6,7 +6,7 @@
 /*   By: dmodrzej <dmodrzej@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 20:31:03 by dmodrzej          #+#    #+#             */
-/*   Updated: 2024/05/05 22:19:19 by dmodrzej         ###   ########.fr       */
+/*   Updated: 2024/05/06 00:08:29 by dmodrzej         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,14 +84,13 @@ void	add_index(unsigned int size_a, t_list **stack_a)
 	int				smallest;
 
 	index = 0;
-	smallest = stack_min(stack_a);
 	while (index < size_a)
 	{
 		tmp = *stack_a;
 		smallest = INT_MAX;
 		while (tmp)
 		{
-			if (tmp->content < smallest && tmp->has_index == 0)
+			if (tmp->content <= smallest && tmp->has_index == 0)
 			{
 				smallest_node = tmp;
 				smallest = tmp->content;

@@ -6,7 +6,7 @@
 /*   By: dmodrzej <dmodrzej@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/05 14:23:29 by dmodrzej          #+#    #+#             */
-/*   Updated: 2024/05/05 15:07:31 by dmodrzej         ###   ########.fr       */
+/*   Updated: 2024/05/06 00:01:57 by dmodrzej         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,11 +33,11 @@ void	print_stack(t_list **stack)
 	tmp = *stack;
 	while (tmp)
 	{
-		ft_putnbr_fd(tmp->content, 1);
+		print_bits(tmp->index);
 		ft_putchar_fd('\t', 1);
 		ft_putnbr_fd(tmp->index, 1);
 		ft_putchar_fd('\t', 1);
-		print_bits(tmp->index);
+		ft_putnbr_fd(tmp->content, 1);
 		ft_putchar_fd('\n', 1);
 		tmp = tmp->next;
 	}

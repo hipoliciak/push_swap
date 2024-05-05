@@ -6,7 +6,7 @@
 /*   By: dmodrzej <dmodrzej@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 21:29:37 by dmodrzej          #+#    #+#             */
-/*   Updated: 2024/05/05 22:23:16 by dmodrzej         ###   ########.fr       */
+/*   Updated: 2024/05/06 00:46:17 by dmodrzej         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ void	fill_stack(t_list **stack_a, long *nums, int ac, char **av)
 	add_index(i, stack_a);
 }
 
-void	free_stack(t_list **stack)
+void	free_nodes(t_list **stack)
 {
 	t_list	*tmp;
 
@@ -95,8 +95,8 @@ void	free_stack(t_list **stack)
 
 void	free_and_exit(t_list **stack_a, t_list **stack_b)
 {
-	free_stack(stack_a);
-	free_stack(stack_b);
+	free_nodes(stack_a);
+	free_nodes(stack_b);
 	free(stack_a);
 	free(stack_b);
 	ft_putstr_fd("Error\n", 2);

@@ -6,7 +6,7 @@
 /*   By: dmodrzej <dmodrzej@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 21:58:42 by dmodrzej          #+#    #+#             */
-/*   Updated: 2024/05/05 22:15:21 by dmodrzej         ###   ########.fr       */
+/*   Updated: 2024/05/06 00:52:31 by dmodrzej         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 # define PUSH_SWAP_H
 # include <limits.h>
 # include <stdlib.h>
-# include <stdio.h>
 # include <unistd.h>
 
 typedef struct s_list
@@ -53,7 +52,7 @@ void	add_index(unsigned int size_a, t_list **stack_a);
 int		check_duplicates(int ac, char **av);
 int		is_nums(int ac, char **av);
 void	fill_stack(t_list **stack_a, long *nums, int ac, char **av);
-void	free_stack(t_list **stack);
+void	free_nodes(t_list **stack);
 void	free_and_exit(t_list **stack_a, t_list **stack_b);
 
 // Libft functions

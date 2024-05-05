@@ -6,7 +6,7 @@
 /*   By: dmodrzej <dmodrzej@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/08 22:41:54 by dmodrzej          #+#    #+#             */
-/*   Updated: 2024/05/05 22:14:46 by dmodrzej         ###   ########.fr       */
+/*   Updated: 2024/05/06 00:43:09 by dmodrzej         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static void	sort(t_list **stack_a, int ac)
 		sort_3_to_6(size_a, stack_a, stack_b);
 	else
 		sort_big(size_a, stack_a, stack_b);
-	free_stack(stack_b);
+	free_nodes(stack_b);
 	free(stack_b);
 }
 
@@ -55,7 +55,7 @@ int	main(int ac, char **av)
 	fill_stack(stack_a, nums, ac, av);
 	if (!is_sorted(stack_a))
 		sort(stack_a, ac);
-	free_stack(stack_a);
+	free_nodes(stack_a);
 	free(stack_a);
 	free(nums);
 	return (0);
